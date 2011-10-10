@@ -23,13 +23,13 @@ class Array
   end
 end
 
-dir_string = "/Users/Deb/Desktop/Tab/SJ_5221"
+dir_string = "/Volumes/Macintosh HD/Downloads/CK_5228"
 file_dir = Dir.new(dir_string)
 
 # files = ARGV[0].split(',')[1..-1] || []
 files = []
 Dir.foreach(dir_string) do |file|
-  files << file if file.size > 2
+  files << file if !file.match(/^\..*/)
 end
 
 first_file = files[0]
@@ -90,8 +90,6 @@ files.each do |file|
     end
   end
 
-  individual.delete_if { |i| i[:match] =~ /[mM]ismatch/ }
-  family.delete_if { |f| f[:match] =~ /[mM]ismatch/ }
   individual.delete_if { |i| i[:accuracy] == 0 }
   family.delete_if { |f| f[:accuracy] == 0 }
   
